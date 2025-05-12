@@ -14,7 +14,7 @@ function App() {
     const fetchTextFile = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('/text/study.txt');
+        const response = await fetch('./text/study.txt');
         if (!response.ok) {
           throw new Error(`Failed to fetch text file: ${response.status}`);
         }
