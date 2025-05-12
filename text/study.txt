@@ -42,3 +42,141 @@ Al principio hay problemas leves para respirar, pero luego aparecen infecciones 
 dañan los pulmones.
 En fases avanzadas, los pulmones pueden fallar, y otros órganos como el páncreas o el hígado
 también pueden verse afectados.
+
+---
+title: Diapositiva 1
+---
+
+Hola a todos. Hoy les vamos a dar una presentación sobre la fibrosis quística.
+
+---
+title: Diapositiva 3: Introducción
+---
+
+La fibrosis quística es una enfermedad genética presente desde el nacimiento.
+Fue descrita en 1938 por la doctora Dorothy Anderson
+En 1989 se descubrió el gen responsable, el CFTR, lo que ayudó a entender la enfermedad y
+crear tratamientos.
+
+---
+title: Diapositiva 4: Objetivos e Hipótesis
+---
+
+El objetivo de esta presentación es explicar qué es la fibrosis quística y por qué es importante
+detectarla temprano y tratarla bien
+Como es una enfermedad genética, se hereda de los padres, así que conocer la historia
+familiar puede ayudar a identificar el riesgo.
+
+---
+title: Diapositiva 5: Definición
+---
+
+La fibrosis quística es una enfermedad crónica que afecta sobre todo a los pulmones y al
+sistema digestivo.
+El cuerpo produce una substancia muy espesa que bloquea las vías respiratorias y otros
+conductos.
+Esto se debe a mutaciones en el gen CFTR, y por eso los pacientes tienen problemas para
+respirar y digerir bien los alimentos.
+
+---
+title: Diapositiva 6: Progresión
+---
+
+Los síntomas empiezan en la infancia y se agravan con el tiempo.
+Al principio hay problemas leves para respirar, pero luego aparecen infecciones frecuentes que
+dañan los pulmones.
+En fases avanzadas, los pulmones pueden fallar, y otros órganos como el páncreas o el hígado
+también pueden verse afectados.
+
+---
+title: Diapositiva 7: Enfermedades vinculadas
+---
+
+La fibrosis quística no solo afecta los pulmones, también puede causar otras complicaciones.
+Algunos pacientes tienen bronquiectasias, osteoporosis o infertilidad.
+También puede aparecer una forma de diabetes por daño al páncreas.
+Por eso, se necesita un cuidado médico completo.
+
+---
+title: Diapositiva 8: Causas
+---
+
+La fibrosis quística es hereditaria.
+Se transmite si ambos padres tienen el gen CFTR defectuoso.
+Existen más de 2000 mutaciones del gen, que pueden hacer la enfermedad más o menos
+grave.
+Por eso, las pruebas genéticas son útiles para el diagnóstico y la planificación familiar.
+
+---
+title: Diapositiva 9: Síntomas
+---
+
+Los síntomas comunes incluyen tos crónica, infecciones pulmonares frecuentes y piel salada.
+Muchos pacientes también tienen problemas para crecer o subir de peso.
+Esto pasa porque su cuerpo no absorbe bien los nutrientes.
+Además, pueden tener heces grasosas por un mal funcionamiento del páncreas.
+
+---
+title: Diapositiva 10: Diagnóstico
+---
+
+Para diagnosticar la fibrosis quística se usan varias pruebas.
+La más común es la del sudor, que mide la sal.
+También se hacen estudios genéticos, radiografías y pruebas de función pulmonar.
+Todo esto ayuda a confirmar el diagnóstico.
+
+---
+title: Diapositiva 11: Prevención
+---
+
+No se puede prevenir del todo, pero sí se puede detectar temprano.
+El asesoramiento genético ayuda a las familias a conocer su riesgo.
+Si ambos padres son portadores, se puede hacer la prueba al bebé desde el nacimiento.
+Así, se empieza el tratamiento cuanto antes.
+
+---
+title: Diapositiva 12: Tratamiento
+---
+
+No hay cura, pero el tratamiento ha mejorado.
+Se usa fisioterapia para limpiar los pulmones, antibióticos para infecciones y enzimas para la
+digestión.
+Además, los moduladores CFTR ayudan a corregir el problema del gen.
+Estos medicamentos han cambiado la vida de muchos pacientes.
+
+---
+title: Diapositiva 13: Estudio de caso
+---
+
+Un bebé fue diagnosticado al nacer con fibrosis quística.
+Tuvo muchas infecciones y problemas respiratorios.
+Comenzó un tratamiento con moduladores CFTR y mejoró mucho.
+Ahora respira mejor y se enferma menos.
+Este caso muestra lo importante que es el tratamiento moderno.
+
+---
+title: Diapositiva 14: Estadísticas y Resultados
+---
+
+En Europa, 1 de cada 2500 bebés nace con esta enfermedad.
+El 75 % se diagnostica antes de los 2 años.
+Gracias al tratamiento, muchos pacientes viven más de 40 años.
+Esto es un gran avance en comparación con el pasado.
+
+---
+title: Diapositiva 15: Discusión
+---
+
+Las personas con fibrosis quística necesitan cuidados durante toda su vida.
+Los moduladores CFTR han mejorado mucho los síntomas.
+Pero no todos tienen acceso a ellos.
+Aún existen desigualdades en el tratamiento según el país.
+
+---
+title: Diapositiva 16: Conclusión
+---
+
+Aunque no tiene cura, la fibrosis quística se puede controlar.
+El diagnóstico temprano y los tratamientos modernos mejoran la vida del paciente.
+También es importante el asesoramiento genético.
+La ciencia sigue avanzando y hay esperanza para el futuro.
