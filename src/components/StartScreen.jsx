@@ -6,7 +6,7 @@ const StartScreen = ({ onStartQuiz }) => {
       <div className="mode-buttons">
         <button onClick={() => onStartQuiz('easy')} className="easy-mode-btn">
           Easy Mode
-          <span>3-5 words will be hidden</span>
+          <span>A couple words will be hidden</span>
         </button>
         <button onClick={() => onStartQuiz('hard')} className="hard-mode-btn">
           Hard Mode
