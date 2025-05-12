@@ -18,33 +18,33 @@ function App() {
         if (!response.ok) {
           throw new Error(`Failed to fetch text file: ${response.status}`);
         }
-        const text = await response.text();
 
-        // Parse text with metadata format: sections separated by '---'
-        // Each section has title metadata and content
-        const sections = text
-          .split('---')
-          .filter((section) => section.trim().length > 0);
+        const text = await response.text();
+        console.log('Text file loaded, length:', text.length);
+
+        // Use regex to match sections properly with their content
+        const sectionRegex =
+          /---\s*title:\s*([^\n]+)\s*---\s*\n([\s\S]*?)(?=---|\s*$)/g;
         const parsedParagraphs = [];
 
-        for (let i = 0; i < sections.length; i += 2) {
-          // Even indices contain metadata (title)
-          // Odd indices contain paragraph content
-          if (i + 1 < sections.length) {
-            const metadata = sections[i].trim();
-            const content = sections[i + 1].trim();
+        let match;
+        while ((match = sectionRegex.exec(text)) !== null) {
+          const title = match[1].trim();
+          const content = match[2].trim();
 
-            // Extract title from metadata
-            const titleMatch = metadata.match(/title:\s*(.+)/);
-            const title = titleMatch ? titleMatch[1].trim() : '';
-
-            // Store both title and content
+          if (content) {
+            // Only add if there's content
             parsedParagraphs.push({
               title,
               content,
             });
           }
         }
+
+        console.log(
+          `Parsed ${parsedParagraphs.length} paragraphs, with format:`,
+          parsedParagraphs[0]
+        );
 
         setParagraphs(parsedParagraphs);
         setIsLoading(false);
@@ -86,6 +86,26 @@ function App() {
           onRestartTraining={handleRestartTraining}
           onChangeDifficulty={setDifficultyMode}
         />
+      )}
+
+      {/* Debug section - remove in production */}
+      {paragraphs.length > 0 && currentScreen === 'start' && (
+        <div
+          className="debug-info"
+          style={{ margin: '20px', padding: '10px', border: '1px solid #ccc' }}
+        >
+          <h3>Debug Information</h3>
+          <p>Loaded {paragraphs.length} paragraphs</p>
+          <details>
+            <summary>First paragraph</summary>
+            <p>
+              <strong>Title:</strong> {paragraphs[0].title}
+            </p>
+            <p>
+              <strong>Content:</strong> {paragraphs[0].content}
+            </p>
+          </details>
+        </div>
       )}
     </div>
   );
