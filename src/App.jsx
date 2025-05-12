@@ -87,26 +87,6 @@ function App() {
           onChangeDifficulty={setDifficultyMode}
         />
       )}
-
-      {/* Debug section - remove in production */}
-      {paragraphs.length > 0 && currentScreen === 'start' && (
-        <div
-          className="debug-info"
-          style={{ margin: '20px', padding: '10px', border: '1px solid #ccc' }}
-        >
-          <h3>Debug Information</h3>
-          <p>Loaded {paragraphs.length} paragraphs</p>
-          <details>
-            <summary>First paragraph</summary>
-            <p>
-              <strong>Title:</strong> {paragraphs[0].title}
-            </p>
-            <p>
-              <strong>Content:</strong> {paragraphs[0].content}
-            </p>
-          </details>
-        </div>
-      )}
     </div>
   );
 }
