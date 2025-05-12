@@ -1,0 +1,44 @@
+---
+title: Diapositiva 1
+---
+
+Hola a todos. Hoy les vamos a dar una presentación sobre la fibrosis quística.
+
+---
+title: Diapositiva 3
+---
+
+La fibrosis quística es una enfermedad genética presente desde el nacimiento.
+Fue descrita en 1938 por la doctora Dorothy Anderson.
+En 1989 se descubrió el gen responsable, el CFTR, lo que ayudó a entender la enfermedad y
+crear tratamientos.
+
+---
+title: Diapositiva 4
+---
+
+El objetivo de esta presentación es explicar qué es la fibrosis quística y por qué es importante
+detectarla temprano y tratarla bien.
+Como es una enfermedad genética, se hereda de los padres, así que conocer la historia
+familiar puede ayudar a identificar el riesgo.
+
+---
+title: Diapositiva 5
+---
+
+La fibrosis quística es una enfermedad crónica que afecta sobre todo a los pulmones y al
+sistema digestivo.
+El cuerpo produce una substancia muy espesa que bloquea las vías respiratorias y otros
+conductos.
+Esto se debe a mutaciones en el gen CFTR, y por eso los pacientes tienen problemas para
+respirar y digerir bien los alimentos.
+
+---
+title: Diapositiva 6
+---
+
+Los síntomas empiezan en la infancia y se agravan con el tiempo.
+Al principio hay problemas leves para respirar, pero luego aparecen infecciones frecuentes que
+dañan los pulmones.
+En fases avanzadas, los pulmones pueden fallar, y otros órganos como el páncreas o el hígado
+también pueden verse afectados.
