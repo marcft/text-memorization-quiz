@@ -106,7 +106,10 @@ const EasyModeQuiz = ({ paragraphs, onContinue }) => {
 
   return (
     <>
-      <div className="mode-toggle" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div
+        className="mode-toggle"
+        style={{ display: 'flex', alignItems: 'center', gap: '16px' }}
+      >
         <label className="toggle-switch">
           <input
             type="checkbox"
@@ -118,13 +121,20 @@ const EasyModeQuiz = ({ paragraphs, onContinue }) => {
         <span className="toggle-label">
           {isRandomMode ? 'Random Mode' : 'Sequential Mode'}
         </span>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '4px', marginLeft: '16px' }}>
+        <label
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            marginLeft: '16px',
+          }}
+        >
           <span>Hidden words:</span>
           <input
             type="number"
             min="1"
             value={numHiddenWords}
-            onChange={e => setNumHiddenWords(Number(e.target.value))}
+            onChange={(e) => setNumHiddenWords(Number(e.target.value))}
             className="hidden-words-input"
             style={{ width: '60px' }}
           />
@@ -159,7 +169,18 @@ const EasyModeQuiz = ({ paragraphs, onContinue }) => {
         ) : (
           <div className="feedback incorrect">
             <p>Not quite right. Here's the correct text:</p>
-            <p className="correct-answer">{originalParagraph}</p>
+            <p className="correct-answer">
+              {originalParagraph.split(' ').map((word, index) => {
+                // Check if this word was one of the hidden words
+                const isHiddenWord = hiddenWords.includes(word);
+                return (
+                  <span key={index}>
+                    {isHiddenWord ? <strong>{word}</strong> : word}
+                    {index < originalParagraph.split(' ').length - 1 ? ' ' : ''}
+                  </span>
+                );
+              })}
+            </p>
             <button onClick={handleContinue} className="continue-btn">
               Continue
             </button>
