@@ -5,6 +5,10 @@ import PracticeMode from './PracticeMode';
 const QuizScreen = ({ paragraphs, difficultyMode, onRestartTraining }) => {
   return (
     <div className="quiz-screen">
+      <button onClick={onRestartTraining} className="goback-btn">
+        Go Back
+      </button>
+
       <div className="quiz-header">
         <h2>
           Text Study Quiz -{' '}
@@ -14,9 +18,6 @@ const QuizScreen = ({ paragraphs, difficultyMode, onRestartTraining }) => {
             ? 'Easy Mode'
             : 'Hard Mode'}
         </h2>
-        <button onClick={onRestartTraining} className="goback-btn">
-          Go Back to Start
-        </button>
       </div>
 
       <div className="quiz-content">

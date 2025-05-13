@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { normalizeText } from '../utils';
 
 const PracticeMode = ({ paragraphs }) => {
@@ -9,7 +9,6 @@ const PracticeMode = ({ paragraphs }) => {
   // | { type: 'partial_error', correctCount: number, typed: string, expected: string }
   // | { type: 'completed' }
   const [feedback, setFeedback] = useState(null);
-  const [originalParagraph, setOriginalParagraph] = useState('');
   const [currentTitle, setCurrentTitle] = useState('');
   const [completedText, setCompletedText] = useState('');
   const [remainingText, setRemainingText] = useState('');
@@ -18,6 +17,32 @@ const PracticeMode = ({ paragraphs }) => {
   const [progress, setProgress] = useState(0);
   const inputRef = useRef(null);
 
+  // Prepare a paragraph for practice
+  const prepareNewParagraph = useCallback(
+    (index) => {
+      if (
+        !paragraphs ||
+        paragraphs.length === 0 ||
+        index < 0 ||
+        index >= paragraphs.length
+      )
+        return;
+
+      const paragraph = paragraphs[index];
+      setCurrentTitle(paragraph.title);
+      setUserInput('');
+      setFeedback(null);
+      setCompletedText('');
+
+      const wordsArray = paragraph.content.split(/\s+/).filter(Boolean); // Filter out empty strings
+      setWords(wordsArray);
+      setCurrentWordIndex(0);
+      setRemainingText(paragraph.content);
+      setProgress(0);
+    },
+    [paragraphs]
+  ); // Added paragraphs to useCallback dependencies
+
   // Initialize with the first paragraph
   useEffect(() => {
     if (paragraphs && paragraphs.length > 0) {
@@ -25,7 +50,7 @@ const PracticeMode = ({ paragraphs }) => {
       prepareNewParagraph(0); // Initialize with the first paragraph explicitly
       setCurrentParagraphIndex(0); // Set index if not already
     }
-  }, [paragraphs]); // Dependency on paragraphs ensures re-init if paragraphs change
+  }, [paragraphs, prepareNewParagraph]); // Added prepareNewParagraph to useEffect dependencies
 
   // Focus input field when component mounts or when feedback changes
   useEffect(() => {
@@ -33,30 +58,6 @@ const PracticeMode = ({ paragraphs }) => {
       inputRef.current.focus();
     }
   }, [feedback]); // Depend on the feedback object
-
-  // Prepare a paragraph for practice
-  const prepareNewParagraph = (index) => {
-    if (
-      !paragraphs ||
-      paragraphs.length === 0 ||
-      index < 0 ||
-      index >= paragraphs.length
-    )
-      return;
-
-    const paragraph = paragraphs[index];
-    setOriginalParagraph(paragraph.content);
-    setCurrentTitle(paragraph.title);
-    setUserInput('');
-    setFeedback(null);
-    setCompletedText('');
-
-    const wordsArray = paragraph.content.split(/\s+/).filter(Boolean); // Filter out empty strings
-    setWords(wordsArray);
-    setCurrentWordIndex(0);
-    setRemainingText(paragraph.content);
-    setProgress(0);
-  };
 
   // Handle user input
   const handleInputChange = (e) => {
@@ -268,7 +269,7 @@ const PracticeMode = ({ paragraphs }) => {
             {paragraphs &&
               paragraphs.map((paragraph, index) => (
                 <option key={index} value={index}>
-                  {index + 1}. {paragraph.title}
+                  {paragraph.title}
                 </option>
               ))}
           </select>
@@ -335,11 +336,13 @@ const PracticeMode = ({ paragraphs }) => {
         </div>
 
         {feedback && feedback.type && (
-          <div className={`feedback ${
-            feedback.type === 'partial_error' || feedback.type === 'incorrect'
-              ? 'feedback-incorrect' // Apply 'feedback-incorrect' style for both
-              : `feedback-${feedback.type.split('_')[0]}` // Original logic for other types
-          }`}>
+          <div
+            className={`feedback ${
+              feedback.type === 'partial_error' || feedback.type === 'incorrect'
+                ? 'feedback-incorrect' // Apply 'feedback-incorrect' style for both
+                : `feedback-${feedback.type.split('_')[0]}` // Original logic for other types
+            }`}
+          >
             {' '}
             {/* e.g. feedback-partial */}
             {feedback.type === 'correct' && <span>Correct! Keep going!</span>}

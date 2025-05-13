@@ -170,15 +170,42 @@ body {
 
 .quiz-header {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 1rem;
+  justify-content: space-between; /* Aligns title to the left and button to the right */
+  align-items: center; /* Vertically aligns items in the middle */
+  padding-bottom: 10px; /* Adds some space below the header content */
+  margin-bottom: 20px; /* Space between header and quiz content */
+  border-bottom: 1px solid #e0e0e0; /* A light separator line */
 }
 
 .quiz-header h2 {
   color: var(--primary-color);
   margin-bottom: 1rem;
+}
+
+.goback-btn {
+  background-color: var(--primary-color);
+  border: 1px solid #ced4da; /* Grey border */
+  color: white; /* Darker grey text for contrast */
+  padding: 8px 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.goback-btn:hover {
+  background-color: #406090; /* Slightly darker on hover */
+  border-color: #adb5bd;
+}
+
+/* Adds a left arrow before the button text */
+.goback-btn::before {
+  content: '←'; /* Unicode left arrow character */
+  margin-right: 6px;
+  font-weight: bold; /* Optional: makes arrow more prominent */
 }
 
 .quiz-controls {
@@ -243,7 +270,8 @@ body {
 
 /* Practice Mode Styles */
 .practice-mode {
-  width: 100%;
+  width: 100%; /* Keep this for full width */
+  min-width: auto; /* Remove fixed minimum width */
 }
 
 .practice-header {
@@ -251,20 +279,84 @@ body {
 }
 
 .paragraph-selector {
-  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.paragraph-selector select {
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  margin-left: 0.5rem;
+.paragraph-selector label {
+  margin-right: 10px;
+  font-size: 0.95rem;
+  color: #4a5568;
 }
 
-.paragraph-info {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.5rem;
+#paragraph-select {
+  background-color: #ffffff; /* Mismo color que el fondo de la app */
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  appearance: none; /* Elimina el estilo nativo del desplegable */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: auto;
+  min-width: 220px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%234A5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+#paragraph-select:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+#paragraph-select:hover {
+  border-color: #cbd5e0;
+}
+
+#paragraph-select:disabled {
+  background-color: #edf2f7;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Estilo para las opciones (en navegadores que lo soportan) */
+#paragraph-select option {
+  padding: 8px 12px;
+  background-color: #ffffff;
+  color: #2d3748;
+}
+
+/* Mejora la apariencia del selector en la interfaz */
+.practice-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Add responsive layout for practice header */
+@media (max-width: 768px) {
+  .paragraph-selector {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: 14px 0;
+  }
+
+  #paragraph-select {
+    width: 100%;
+    min-width: unset;
+    margin-top: 6px;
+  }
 }
 
 .progress-bar {
@@ -654,8 +746,8 @@ textarea:disabled {
 
 /* For the main container of your PracticeMode component */
 .practice-mode {
-  min-width: 700px; /* Adjust this value as needed, e.g., 800px, 50vw, etc. */
-  /* ... other existing styles ... */
+  width: 100%; /* Keep this for full width */
+  min-width: auto; /* Remove fixed minimum width */
 }
 
 /* For the feedback message container */
