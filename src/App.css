@@ -113,7 +113,8 @@ body {
 }
 
 .easy-mode-btn,
-.hard-mode-btn {
+.hard-mode-btn,
+.practice-mode-btn {
   padding: 1.2rem;
   border: none;
   border-radius: 8px;
@@ -124,6 +125,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.practice-mode-btn {
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 .easy-mode-btn {
@@ -137,13 +143,15 @@ body {
 }
 
 .easy-mode-btn:hover,
-.hard-mode-btn:hover {
+.hard-mode-btn:hover,
+.practice-mode-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .easy-mode-btn span,
-.hard-mode-btn span {
+.hard-mode-btn span,
+.practice-mode-btn span {
   font-size: 0.9rem;
   font-weight: normal;
   margin-top: 0.5rem;
@@ -175,9 +183,30 @@ body {
 
 .quiz-controls {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
   margin-top: 0.5rem;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #e0e0e0;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.mode-btn.active {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .mode-toggle-btn,
@@ -210,6 +239,155 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+/* Practice Mode Styles */
+.practice-mode {
+  width: 100%;
+}
+
+.practice-header {
+  margin-bottom: 1.5rem;
+}
+
+.paragraph-selector {
+  margin: 1rem 0;
+}
+
+.paragraph-selector select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-left: 0.5rem;
+}
+
+.paragraph-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--success-color);
+  transition: width 0.3s ease;
+}
+
+.practice-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  min-height: 150px;
+}
+
+.completed-text {
+  color: var(--text-color);
+}
+
+.remaining-text {
+  color: #999;
+  font-style: italic;
+}
+
+.input-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input-container button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.input-container button:hover {
+  background-color: var(--primary-dark);
+}
+
+.input-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.input-correct {
+  border-color: var(--success-color) !important;
+}
+
+.input-incorrect {
+  border-color: var(--error-color) !important;
+}
+
+.feedback {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.feedback-correct {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--success-color);
+}
+
+.feedback-incorrect {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--error-color);
+}
+
+.feedback-completed {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #2196f3;
+  text-align: center;
+}
+
+.completion-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.completion-options p {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.completion-options button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 200px;
+}
+
+.completion-options button:hover {
+  background-color: var(--primary-dark);
 }
 
 .navigation-buttons {
@@ -419,7 +597,7 @@ textarea:disabled {
   color: #222; /* Make the number dark */
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   appearance: textfield; /* Remove default arrows in most browsers */
 }
 
@@ -431,7 +609,7 @@ textarea:disabled {
 }
 
 /* Remove arrows in Firefox */
-.hidden-words-input[type=number] {
+.hidden-words-input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -440,4 +618,56 @@ textarea:disabled {
   background: #fff;
   color: #222;
   box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.back-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.back-button:hover {
+  background-color: #555;
+}
+
+.divider {
+  margin: 0 0 1rem 0;
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+}
+
+/* Assuming you have a CSS file linked, e.g., App.css or PracticeMode.css */
+
+/* For the main container of your PracticeMode component */
+.practice-mode {
+  min-width: 700px; /* Adjust this value as needed, e.g., 800px, 50vw, etc. */
+  /* ... other existing styles ... */
+}
+
+/* For the feedback message container */
+.feedback {
+  /* ... other existing styles ... */
+  overflow-wrap: break-word; /* Allows text to wrap */
+  word-wrap: break-word; /* For older browser compatibility */
+  white-space: normal; /* Ensures text wrapping is enabled */
+}
+
+/* You might also want to ensure the strong tags within feedback behave as expected with wrapping */
+.feedback strong {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }

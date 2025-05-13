@@ -6,7 +6,7 @@ import QuizScreen from './components/QuizScreen';
 function App() {
   const [paragraphs, setParagraphs] = useState([]);
   const [currentScreen, setCurrentScreen] = useState('start'); // 'start' or 'quiz'
-  const [difficultyMode, setDifficultyMode] = useState('easy'); // 'easy' or 'hard'
+  const [difficultyMode, setDifficultyMode] = useState('practice'); // 'practice', 'easy', or 'hard'
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 

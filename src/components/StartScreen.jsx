@@ -2,8 +2,15 @@ const StartScreen = ({ onStartQuiz }) => {
   return (
     <div className="start-screen">
       <h1>Text Study Quiz</h1>
-      <p>Choose a difficulty mode to begin:</p>
+      <p>Choose a mode to begin:</p>
       <div className="mode-buttons">
+        <button
+          onClick={() => onStartQuiz('practice')}
+          className="practice-mode-btn"
+        >
+          Practice Mode
+          <span>Type the text word by word with feedback</span>
+        </button>
         <button onClick={() => onStartQuiz('easy')} className="easy-mode-btn">
           Easy Mode
           <span>A couple words will be hidden</span>

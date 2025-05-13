@@ -1,36 +1,28 @@
 import EasyModeQuiz from './EasyModeQuiz';
 import HardModeQuiz from './HardModeQuiz';
+import PracticeMode from './PracticeMode';
 
-const QuizScreen = ({
-  paragraphs,
-  difficultyMode,
-  onRestartTraining,
-  onChangeDifficulty,
-}) => {
+const QuizScreen = ({ paragraphs, difficultyMode, onRestartTraining }) => {
   return (
     <div className="quiz-screen">
       <div className="quiz-header">
         <h2>
           Text Study Quiz -{' '}
-          {difficultyMode === 'easy' ? 'Easy Mode' : 'Hard Mode'}
+          {difficultyMode === 'practice'
+            ? 'Practice Mode'
+            : difficultyMode === 'easy'
+            ? 'Easy Mode'
+            : 'Hard Mode'}
         </h2>
-        <div className="quiz-controls">
-          <button
-            onClick={() =>
-              onChangeDifficulty(difficultyMode === 'easy' ? 'hard' : 'easy')
-            }
-            className="mode-toggle-btn"
-          >
-            Switch to {difficultyMode === 'easy' ? 'Hard' : 'Easy'} Mode
-          </button>
-          <button onClick={onRestartTraining} className="restart-btn">
-            Restart Training
-          </button>
-        </div>
+        <button onClick={onRestartTraining} className="goback-btn">
+          Go Back to Start
+        </button>
       </div>
 
       <div className="quiz-content">
-        {difficultyMode === 'easy' ? (
+        {difficultyMode === 'practice' ? (
+          <PracticeMode paragraphs={paragraphs} />
+        ) : difficultyMode === 'easy' ? (
           <EasyModeQuiz paragraphs={paragraphs} />
         ) : (
           <HardModeQuiz paragraphs={paragraphs} />
