@@ -7,6 +7,7 @@ An interactive application to help users memorize and study text content through
 - **Two Study Modes**:
   - **Easy Mode**: Tests memory by hiding words in paragraphs
   - **Hard Mode**: Tests complete recall by hiding entire paragraphs
+  - **Practice Mode**: Practice memorising the text.
 - **Immediate Feedback**: Get instant feedback on your answers
 - **Customizable**: Configure the number of hidden words in Easy Mode
 - **Sequential or Random**: Choose between sequential or random paragraph selection
