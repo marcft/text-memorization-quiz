@@ -407,6 +407,27 @@ const PracticeMode = ({ paragraphs }) => {
         <div className="progress-fill" style={{ width: `${progress}%` }}></div>
       </div>
 
+      {/* Streak info para pantallas pequeñas (móviles) */}
+      {paragraphs && paragraphs.length > 0 && words && words.length > 0 && (
+        <div className="max-streak-info-mobile">
+          <span style={{ marginRight: '5px' }}>🏆</span>
+          <span>
+            Best streak:{' '}
+            {paragraphStats[currentParagraphIndex] &&
+            paragraphStats[currentParagraphIndex].maxStreak === words.length &&
+            words.length > 0 ? (
+              <span style={{ color: '#e53e3e', fontWeight: 'bold' }}>
+                MAX 🔥
+              </span>
+            ) : (
+              <span style={{ color: '#3182ce' }}>
+                {paragraphStats[currentParagraphIndex]?.maxStreak || 0}
+              </span>
+            )}
+          </span>
+        </div>
+      )}
+
       <div className="practice-content">
         <h3 className="paragraph-title">{currentTitle}</h3>
 
