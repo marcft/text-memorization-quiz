@@ -17,6 +17,60 @@ const PracticeMode = ({ paragraphs }) => {
   const [progress, setProgress] = useState(0);
   const inputRef = useRef(null);
 
+  const [currentStreak, setCurrentStreak] = useState(0); // Tracks current consecutive correct words
+  const [paragraphStats, setParagraphStats] = useState({});
+  const LOCAL_STORAGE_KEY = 'textMemorizationPracticeStats';
+
+  // Effect to load/initialize stats from localStorage
+  useEffect(() => {
+    const storedStatsRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    let loadedStats = {};
+    if (storedStatsRaw) {
+      try {
+        loadedStats = JSON.parse(storedStatsRaw);
+      } catch (e) {
+        console.error('Failed to parse stats from localStorage', e);
+        loadedStats = {}; // Reset if parsing fails
+      }
+    }
+
+    if (paragraphs && paragraphs.length > 0) {
+      const initialStats = paragraphs.reduce((acc, _, index) => {
+        acc[index] = {
+          maxStreak: loadedStats[index]?.maxStreak || 0,
+        };
+        return acc;
+      }, {});
+      setParagraphStats(initialStats);
+    } else {
+      setParagraphStats({}); // Clear if no paragraphs
+    }
+  }, [paragraphs]);
+
+  // Effect to save stats to localStorage
+  useEffect(() => {
+    if (
+      paragraphs &&
+      paragraphs.length > 0 &&
+      Object.keys(paragraphStats).length > 0
+    ) {
+      const validStatsToSave = {};
+      for (let i = 0; i < paragraphs.length; i++) {
+        if (paragraphStats[i]) {
+          validStatsToSave[i] = paragraphStats[i];
+        } else {
+          validStatsToSave[i] = { maxStreak: 0 }; // Should be initialized by load effect
+        }
+      }
+      if (Object.keys(validStatsToSave).length > 0) {
+        localStorage.setItem(
+          LOCAL_STORAGE_KEY,
+          JSON.stringify(validStatsToSave)
+        );
+      }
+    }
+  }, [paragraphStats, paragraphs]);
+
   // Prepare a paragraph for practice
   const prepareNewParagraph = useCallback(
     (index) => {
@@ -39,6 +93,7 @@ const PracticeMode = ({ paragraphs }) => {
       setCurrentWordIndex(0);
       setRemainingText(paragraph.content);
       setProgress(0);
+      setCurrentStreak(0); // Reset current streak for the new paragraph
     },
     [paragraphs]
   ); // Added paragraphs to useCallback dependencies
@@ -165,7 +220,31 @@ const PracticeMode = ({ paragraphs }) => {
     let indexAfterCorrectWords = initialCurrentWordIndexForCheck;
 
     if (numCorrectSequential > 0) {
-      // processCorrectWords uses the current state of currentWordIndex, which is initialCurrentWordIndexForCheck here
+      const newCurrentStreak = currentStreak + numCorrectSequential;
+      setCurrentStreak(newCurrentStreak);
+
+      // Update max streak for the current paragraph
+      setParagraphStats((prevStats) => {
+        const statsForCurrentParagraph = prevStats[currentParagraphIndex] || {
+          maxStreak: 0,
+        };
+        const newMaxStreakForParagraph = Math.max(
+          statsForCurrentParagraph.maxStreak,
+          newCurrentStreak // Use the accumulated current streak
+        );
+
+        if (newMaxStreakForParagraph !== statsForCurrentParagraph.maxStreak) {
+          return {
+            ...prevStats,
+            [currentParagraphIndex]: {
+              ...statsForCurrentParagraph,
+              maxStreak: newMaxStreakForParagraph,
+            },
+          };
+        }
+        return prevStats; // No change in maxStreak for this paragraph
+      });
+
       const correctResult = processCorrectWords(numCorrectSequential);
       paragraphCompletedByProcessing = correctResult.paragraphCompleted;
       indexAfterCorrectWords = correctResult.newCurrentWordIndex;
@@ -177,6 +256,7 @@ const PracticeMode = ({ paragraphs }) => {
           paragraphCompletedByProcessing = processIncorrectWord(
             indexAfterCorrectWords
           );
+          setCurrentStreak(0); // Streak broken by the error after some correct words
         }
         setFeedback({
           type: 'partial_error',
@@ -194,6 +274,7 @@ const PracticeMode = ({ paragraphs }) => {
       }
     } else if (errorFound) {
       // First word typed was incorrect. Error is at initialCurrentWordIndexForCheck.
+      setCurrentStreak(0); // Reset streak as the first word was incorrect
       const actualExpected = words[initialCurrentWordIndexForCheck];
       paragraphCompletedByProcessing = processIncorrectWord(
         initialCurrentWordIndexForCheck
@@ -284,6 +365,42 @@ const PracticeMode = ({ paragraphs }) => {
             of {paragraphs ? paragraphs.length : 0}
           </span>
         </div>
+
+        {paragraphs && paragraphs.length > 0 && words && words.length > 0 && (
+          <div
+            className="max-streak-info"
+            style={{
+              fontSize: '1.1em',
+              fontWeight: 'bold',
+              marginTop: '8px',
+              textAlign: 'right',
+              padding: '5px 12px',
+              borderRadius: '8px',
+              background: 'linear-gradient(to right, #f8f9fa, #e2e8f0)',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+              border: '1px solid #d1d5db',
+              display: 'inline-block',
+              marginLeft: 'auto',
+            }}
+          >
+            <span style={{ marginRight: '5px' }}>🏆</span>
+            <span>
+              Best streak:{' '}
+              {paragraphStats[currentParagraphIndex] &&
+              paragraphStats[currentParagraphIndex].maxStreak ===
+                words.length &&
+              words.length > 0 ? (
+                <span style={{ color: '#e53e3e', fontWeight: 'bold' }}>
+                  MAX 🔥
+                </span>
+              ) : (
+                <span style={{ color: '#3182ce' }}>
+                  {paragraphStats[currentParagraphIndex]?.maxStreak || 0}
+                </span>
+              )}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="progress-bar">
