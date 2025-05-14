@@ -1,6 +1,14 @@
 const StartScreen = ({ onStartQuiz }) => {
   return (
     <div className="start-screen">
+      <div className="pookie-header">
+        <h1 className="pookie-title">Pookie Memorizing App</h1>
+        <p className="pookie-description">
+          For my smart baby girlfriend 💖 — I know you can memorize anything you
+          set your mind to. This app is just a little tool to help you shine
+          even brighter. Love you, Pookie! 🐻
+        </p>
+      </div>
       <h1>Text Study Quiz</h1>
       <p>Choose a mode to begin:</p>
       <div className="mode-buttons">
